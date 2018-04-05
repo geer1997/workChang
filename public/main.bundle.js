@@ -285,6 +285,7 @@ module.exports = "<section id=\"welcome\">\r\n  <div class=\"container\">\r\n   
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/module/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -299,12 +300,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AdministratorDashboardComponent = /** @class */ (function () {
-    function AdministratorDashboardComponent(auth, api, modalService, flash) {
+    function AdministratorDashboardComponent(auth, api, modalService, flash, router) {
         this.auth = auth;
         this.api = api;
         this.modalService = modalService;
         this.flash = flash;
+        this.router = router;
         //Vector de usuarios
         this.usuarios = [];
         // Vector de Roles
@@ -322,6 +325,12 @@ var AdministratorDashboardComponent = /** @class */ (function () {
         this.user = JSON.parse(localStorage.getItem('user'));
         this.getRepuesto();
         this.getUsuario();
+        //this.correspond(this.user);
+    };
+    AdministratorDashboardComponent.prototype.correspond = function (user) {
+        if (user.type != 4) {
+            this.router.navigate(['/']);
+        }
     };
     //RegistrarEmpleado
     AdministratorDashboardComponent.prototype.registrarEmpleado = function () {
@@ -683,7 +692,8 @@ var AdministratorDashboardComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */],
             __WEBPACK_IMPORTED_MODULE_3__services_api_service__["a" /* ApiService */],
             __WEBPACK_IMPORTED_MODULE_1__ng_bootstrap_ng_bootstrap__["a" /* NgbModal */],
-            __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"]])
+            __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"],
+            __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* Router */]])
     ], AdministratorDashboardComponent);
     return AdministratorDashboardComponent;
 }());
@@ -728,6 +738,7 @@ module.exports = "<section>\r\n  <section id=\"welcome\">\r\n    <div class=\"co
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_upload_img_service__ = __webpack_require__("../../../../../src/app/services/upload-img.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -742,12 +753,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ClientDashboardComponent = /** @class */ (function () {
-    function ClientDashboardComponent(api, flash, img, modal) {
+    function ClientDashboardComponent(api, flash, img, modal, router) {
         this.api = api;
         this.flash = flash;
         this.img = img;
         this.modal = modal;
+        this.router = router;
         // Vector de Vehiculos
         this.vehiculos = [];
         // vector de citas
@@ -764,6 +777,12 @@ var ClientDashboardComponent = /** @class */ (function () {
         this.user = JSON.parse(localStorage.getItem('user')); // Guardo los datos del usuario
         this.resolverVehiculos();
         this.resolverCitasPedidas();
+        this.correspond(this.user);
+    };
+    ClientDashboardComponent.prototype.correspond = function (user) {
+        if (user.type !== 1) {
+            this.router.navigate(['/']);
+        }
     };
     // Funciones utilizadas Varias veces
     ClientDashboardComponent.prototype.resolverVehiculos = function () {
@@ -939,7 +958,8 @@ var ClientDashboardComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_api_service__["a" /* ApiService */],
             __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"],
             __WEBPACK_IMPORTED_MODULE_4__services_upload_img_service__["a" /* UploadImgService */],
-            __WEBPACK_IMPORTED_MODULE_1__ng_bootstrap_ng_bootstrap__["a" /* NgbModal */]])
+            __WEBPACK_IMPORTED_MODULE_1__ng_bootstrap_ng_bootstrap__["a" /* NgbModal */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* Router */]])
     ], ClientDashboardComponent);
     return ClientDashboardComponent;
 }());
@@ -1270,6 +1290,7 @@ module.exports = "\r\n  <div class=\"container\">\r\n    <div class=\"row pt-5\"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/module/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1283,11 +1304,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ManagerDashboardComponent = /** @class */ (function () {
-    function ManagerDashboardComponent(api, modalService, flash) {
+    function ManagerDashboardComponent(api, modalService, flash, router) {
         this.api = api;
         this.modalService = modalService;
         this.flash = flash;
+        this.router = router;
         this.colaEspera = [];
         this.ordenesActivas = [];
         this.mecanicos = [];
@@ -1296,6 +1319,7 @@ var ManagerDashboardComponent = /** @class */ (function () {
     ManagerDashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.user = JSON.parse(localStorage.getItem('user'));
+        this.correspond(this.user);
         this.api.getCitasActivas().subscribe(function (data) {
             if (data.success) {
                 _this.colaEspera = data.appointments;
@@ -1322,6 +1346,11 @@ var ManagerDashboardComponent = /** @class */ (function () {
                 _this.flash.show(data.msg, { cssClass: 'custom-alert-danger', timeout: 3000 });
             }
         });
+    };
+    ManagerDashboardComponent.prototype.correspond = function (user) {
+        if (user.type !== 2) {
+            this.router.navigate(['/']);
+        }
     };
     ManagerDashboardComponent.prototype.openDetOrden = function (content, orden) {
         var _this = this;
@@ -1572,7 +1601,8 @@ var ManagerDashboardComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_api_service__["a" /* ApiService */],
             __WEBPACK_IMPORTED_MODULE_1__ng_bootstrap_ng_bootstrap__["a" /* NgbModal */],
-            __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]])
+            __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"],
+            __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */]])
     ], ManagerDashboardComponent);
     return ManagerDashboardComponent;
 }());
@@ -1616,6 +1646,7 @@ module.exports = "<section>\r\n  <section>\r\n    <div class=\"container\">\r\n 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/module/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1629,17 +1660,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MechanicDashboardComponent = /** @class */ (function () {
-    function MechanicDashboardComponent(api, modal, flash) {
+    function MechanicDashboardComponent(api, modal, flash, router) {
         this.api = api;
         this.modal = modal;
         this.flash = flash;
+        this.router = router;
         this.ordenes = [];
         this.resp = [];
     }
     MechanicDashboardComponent.prototype.ngOnInit = function () {
         this.user = JSON.parse(localStorage.getItem('user'));
         this.getOrder(this.user);
+        this.correspond(this.user);
+    };
+    MechanicDashboardComponent.prototype.correspond = function (user) {
+        if (user.type !== 3) {
+            this.router.navigate(['/']);
+        }
     };
     MechanicDashboardComponent.prototype.getOrder = function (user) {
         var _this = this;
@@ -1767,7 +1806,8 @@ var MechanicDashboardComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_api_service__["a" /* ApiService */],
             __WEBPACK_IMPORTED_MODULE_1__ng_bootstrap_ng_bootstrap__["a" /* NgbModal */],
-            __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]])
+            __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"],
+            __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */]])
     ], MechanicDashboardComponent);
     return MechanicDashboardComponent;
 }());
