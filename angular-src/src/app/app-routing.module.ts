@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "client", component: ClientDashboardComponent, canActivate:[AuthGuard]}, 
-  { path: "client/register", component: RegisterComponent, canActivate:[AuthGuard] },
+  { path: "client/register", component: RegisterComponent },
   { path: "manager", component: ManagerDashboardComponent, canActivate:[AuthGuard]},
   { path: "manager/receive-car", component: ReciveCarComponent, canActivate:[AuthGuard] },
   { path: "mechanic", component: MechanicDashboardComponent, canActivate:[AuthGuard]},
