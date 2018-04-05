@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ApiService } from '../../services/api.service';
@@ -25,17 +25,25 @@ export class ClientDashboardComponent implements OnInit {
   private vehiculos = [];
   // vector de citas
   private citas = [];
-
+  // Para interfaz
+  private divDescargas: boolean;
+  @ViewChild('descargar') btn;
 
   constructor(
     private api: ApiService,
     private flash: FlashMessagesService,
     private img: UploadImgService,
-    private modal: NgbModal
+    private modal: NgbModal    
   ) {
   }
-
-  ngOnInit() {
+/*
+  ngAfterContentChecked(){
+    this.user = JSON.parse(localStorage.getItem('user')); // Guardo los datos del usuario
+    this.resolverVehiculos();
+    this.resolverCitasPedidas();
+  }
+*/
+  ngOnInit() {  
     this.user = JSON.parse(localStorage.getItem('user')); // Guardo los datos del usuario
     this.resolverVehiculos();
     this.resolverCitasPedidas();
@@ -81,7 +89,7 @@ export class ClientDashboardComponent implements OnInit {
       this.brand.length < 45 && this.brand &&
       this.model.length < 45 && this.model &&
       this.year>0 && this.year<3000 &&
-      this.licensePlate.length < 7 && this.licensePlate &&
+      this.licensePlate.length <= 7 && this.licensePlate.length >= 6 && this.licensePlate &&
       this.serial.length<255 && this.serial    
     ){
         const car = {
@@ -118,13 +126,9 @@ export class ClientDashboardComponent implements OnInit {
           this.flash.show(data.msg, { cssClass: 'custom-alert-danger', timeout: 3000 });
         }
       });
-
     } else {
       this.flash.show('Disculpe, recuerde completar todos los campos correctamente. No deje campos en blanco ni exceda el limite de caracteres.', { cssClass: 'custom-alert-danger', timeout: 3000 });
     }
-
-
-
   }
 
   desactivar(serial) {
@@ -140,6 +144,30 @@ export class ClientDashboardComponent implements OnInit {
     } else {
       this.flash.show('Upsss... Hemos tenido un error :(', { cssClass: 'custom-alert-danger' })
     }
+  }
+
+  historicoVehiculo(licensePlate) {
+    console.log(licensePlate);
+    if(licensePlate){
+      this.api.historicoVehiculo({ licensePlate }).subscribe(data => {
+        console.log(data);
+        if (data.success) {
+          let blob = new Blob([data.csv], { type: 'text/plain' });
+          if (window.navigator.msSaveBlob) {
+            window.navigator.msSaveBlob(blob);
+          } else {
+            this.btn.nativeElement.href = window.URL.createObjectURL(blob);
+            this.btn.nativeElement.download = `historico-${licensePlate}.csv`
+          }
+        } else {
+          this.flash.show(data.msg, { cssClass: 'custom-alert-danger', timeout: 3000 });
+        }
+      });
+      this.alternarDiv(true);      
+    }else{
+      this.flash.show('Debe indicar la placa del vehiculo', { cssClass: 'custom-alert-danger', timeout: 3000 });
+    }
+
   }
 
   verHistorial(serial) {
@@ -171,6 +199,10 @@ export class ClientDashboardComponent implements OnInit {
     let i = this.vehiculos.findIndex(c => c.serial === serial);
     this.car = this.vehiculos[i];
     this.modal.open(content);
+  }
+
+  alternarDiv(estado){
+    this.divDescargas = estado;
   }
 
 }
