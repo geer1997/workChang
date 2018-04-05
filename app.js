@@ -30,10 +30,10 @@ const PORT = process.env.PORT || 8080;
 
 //set static Folder
 app.use(express.static(path.join(__dirname, 'public')));
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.send('Invalid Endpoint');
 })
-
+*/
 // Middleware
 app.use(cors());
 app.use(bodyParser.json({ limit: '65mb' }));
