@@ -26,7 +26,8 @@ const qr = require('./routes/qr');
 const email = require('./routes/email');
 const mechanic = require('./routes/mechanics');
 
-const PORT = procces.env.PORT || 3000;
+const host = '0.0.0.0';
+const PORT = procces.env.PORT || 8080;
 
 //set static Folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -55,6 +56,6 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 // App Running
-app.listen(PORT, function (req, res) {
+app.listen(PORT, host, function (req, res) {
 	console.log('Running');
 });
