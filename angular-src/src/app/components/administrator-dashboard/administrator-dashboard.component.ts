@@ -60,7 +60,7 @@ export class AdministratorDashboardComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.getRepuesto();
     this.getUsuario();
-    this.correspond(this.user);
+    //this.correspond(this.user);
   }
 
   correspond(user){
