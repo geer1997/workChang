@@ -325,7 +325,7 @@ var AdministratorDashboardComponent = /** @class */ (function () {
         this.user = JSON.parse(localStorage.getItem('user'));
         this.getRepuesto();
         this.getUsuario();
-        //this.correspond(this.user);
+        this.correspond(this.user);
     };
     AdministratorDashboardComponent.prototype.correspond = function (user) {
         if (user.type != 4) {
