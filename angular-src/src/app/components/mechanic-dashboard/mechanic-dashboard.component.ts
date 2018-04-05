@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,12 +23,20 @@ export class MechanicDashboardComponent implements OnInit {
   constructor(
     private api: ApiService,
     private modal: NgbModal,
-    private flash: FlashMessagesService
+    private flash: FlashMessagesService,
+    private router: Router  
   ) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.getOrder(this.user);
+    this.correspond(this.user);
+  }
+
+  correspond(user){
+    if(user.type !== 3){
+      this.router.navigate(['/']);
+    }
   }
 
   getOrder(user) {
