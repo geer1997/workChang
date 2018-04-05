@@ -54,10 +54,10 @@ var routes = [
     { path: "", component: __WEBPACK_IMPORTED_MODULE_2__components_home_home_component__["a" /* HomeComponent */] },
     { path: "login", component: __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__["a" /* LoginComponent */] },
     { path: "client", component: __WEBPACK_IMPORTED_MODULE_4__components_client_dashboard_client_dashboard_component__["a" /* ClientDashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__services_guard_service__["a" /* AuthGuard */]] },
-    { path: "client/register", component: __WEBPACK_IMPORTED_MODULE_5__components_register_register_component__["a" /* RegisterComponent */] },
-    { path: "manager", component: __WEBPACK_IMPORTED_MODULE_6__components_manager_dashboard_manager_dashboard_component__["a" /* ManagerDashboardComponent */] },
-    { path: "manager/receive-car", component: __WEBPACK_IMPORTED_MODULE_9__components_recive_car_recive_car_component__["a" /* ReciveCarComponent */] },
-    { path: "mechanic", component: __WEBPACK_IMPORTED_MODULE_7__components_mechanic_dashboard_mechanic_dashboard_component__["a" /* MechanicDashboardComponent */] },
+    { path: "client/register", component: __WEBPACK_IMPORTED_MODULE_5__components_register_register_component__["a" /* RegisterComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__services_guard_service__["a" /* AuthGuard */]] },
+    { path: "manager", component: __WEBPACK_IMPORTED_MODULE_6__components_manager_dashboard_manager_dashboard_component__["a" /* ManagerDashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__services_guard_service__["a" /* AuthGuard */]] },
+    { path: "manager/receive-car", component: __WEBPACK_IMPORTED_MODULE_9__components_recive_car_recive_car_component__["a" /* ReciveCarComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__services_guard_service__["a" /* AuthGuard */]] },
+    { path: "mechanic", component: __WEBPACK_IMPORTED_MODULE_7__components_mechanic_dashboard_mechanic_dashboard_component__["a" /* MechanicDashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__services_guard_service__["a" /* AuthGuard */]] },
     { path: "admin", component: __WEBPACK_IMPORTED_MODULE_8__components_administrator_dashboard_administrator_dashboard_component__["a" /* AdministratorDashboardComponent */] }
 ];
 var AppRoutingModule = /** @class */ (function () {
